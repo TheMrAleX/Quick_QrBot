@@ -1,0 +1,4 @@
+pillow==11.0.0
+pyTelegramBotAPI==4.23.0
+qrcode==8.0
+uuid==1.30
