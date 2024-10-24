@@ -14,7 +14,7 @@ def crear_qr(url):
         version=1,
         error_correction=qrcode.constants.ERROR_CORRECT_L,
         box_size=10,
-        border=2)
+        border=4)
 
     qr.add_data(url)
     qr.make(fit=True)
@@ -41,4 +41,15 @@ def crear_qr(url):
     os.remove(f'{base_dir}{nombre}')
 
     # retornamos la ruta del estilizado
-    return f'{base_dir}{nombre_nuevo}'  
+    return f'{base_dir}{nombre_nuevo}'
+
+# funcion para leer qr
+def leer_qr(image_path):
+    from cv2 import QRCodeDetector, imread
+    img = imread(image_path)
+    detector = QRCodeDetector()
+    data = detector.detectAndDecode(img)
+    if len(data[0]) >= 1:
+        return data[0]
+    else:
+        return False
