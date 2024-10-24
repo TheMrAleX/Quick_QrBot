@@ -3,9 +3,12 @@ from tools import detectar_url
 from qr_man import crear_qr, leer_qr
 import os
 
-from var import TOKEN, MENSAJE_ERROR
+from dotenv import load_dotenv
 
-photo_dir = 'photos/'
+from var import MENSAJE_ERROR, photos_dir
+
+load_dotenv()
+TOKEN = os.getenv('TOKEN')
 
 bot = telebot.TeleBot(TOKEN)
 
@@ -43,7 +46,7 @@ def handle_photo(message):
     photo_name = file_info.file_path.split('/')[-1]
 
     # se crea la ruta para guardar la foto
-    ruta = f'{photo_dir}{photo_name}'
+    ruta = f'{photos_dir}{photo_name}'
 
     # se guarda la foto en la ruta
     with open(ruta, 'wb') as new_photo:

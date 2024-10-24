@@ -1,12 +1,12 @@
 # importaciones 
 import qrcode
 import os
+from var import output_dir
 from tools import gradient, nombre_unico
 from qrcode.image.styledpil import StyledPilImage
 import qrcode.constants
 from qrcode.image.styles.moduledrawers import RoundedModuleDrawer
 
-base_dir ='output/'
 # funcion que crea el QR sin agregados
 def crear_qr(url):
     # creamos el objeto qr con estos datos estandar que vu en la documentacion
@@ -29,19 +29,19 @@ def crear_qr(url):
     # creamos un nombre unico para este QR original
     nombre = nombre_unico()
     # salvamos el QR original con el nombre unico
-    image.save(f'{base_dir}{nombre}')
+    image.save(f'{output_dir}{nombre}')
 
     # creamos nombre nuevo para el output que ya tendra los estilos aplicados
     nombre_nuevo = nombre_unico()
 
     # aplicamos el gradiente con la funcion del archivo tools.py
-    gradient(f'{base_dir}{nombre}', f'{base_dir}{nombre_nuevo}')
+    gradient(f'{output_dir}{nombre}', f'{output_dir}{nombre_nuevo}')
 
     # borramos el original
-    os.remove(f'{base_dir}{nombre}')
+    os.remove(f'{output_dir}{nombre}')
 
     # retornamos la ruta del estilizado
-    return f'{base_dir}{nombre_nuevo}'
+    return f'{output_dir}{nombre_nuevo}'
 
 # funcion para leer qr
 def leer_qr(image_path):
