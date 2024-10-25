@@ -1,8 +1,8 @@
 # importaciones 
 import qrcode
 import os
-from var import output_dir
-from tools import gradient, nombre_unico
+from .var import output_dir
+from qr_man.tools import gradient, nombre_unico
 from qrcode.image.styledpil import StyledPilImage
 import qrcode.constants
 from qrcode.image.styles.moduledrawers import RoundedModuleDrawer
@@ -12,8 +12,8 @@ def crear_qr(url):
     # creamos el objeto qr con estos datos estandar que vu en la documentacion
     qr = qrcode.QRCode(
         version=1,
-        error_correction=qrcode.constants.ERROR_CORRECT_L,
-        box_size=10,
+        error_correction=qrcode.constants.ERROR_CORRECT_H,
+        box_size=12,
         border=4)
 
     qr.add_data(url)
